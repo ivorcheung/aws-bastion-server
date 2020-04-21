@@ -18,11 +18,20 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "bastion-a" {
   ami           = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
 
   tags = {
-    Name = "HelloWorld"
+    Name = "Bastion A"
+  }
+}
+
+resource "aws_instance" "bastion-b" {
+  ami           = "${data.aws_ami.ubuntu.id}"
+  instance_type = "t2.micro"
+
+  tags = {
+    Name = "Bastion B"
   }
 }
